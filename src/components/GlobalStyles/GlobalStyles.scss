@@ -1,0 +1,42 @@
+@import 'normalize.css';
+
+:root {
+    --primary-color: #002456;
+    --header-height: 65px;
+    --sidebar-icon-area-width: 70px;
+    --sidebar-action-area-width: 240px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    font-size: 1.6rem;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+        Helvetica Neue, sans-serif !important;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
+}
