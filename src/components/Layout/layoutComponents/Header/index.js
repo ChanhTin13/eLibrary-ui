@@ -10,7 +10,7 @@ function Header() {
                 <a href="/" className={cx('logo-container')}>
                     <img
                         className={cx('logo-img')}
-                        src="https://edugo.monamedia.net/images/logo-2.jpg"
+                        src="https://wallpaperaccess.com/full/296819.jpg"
                         alt="eLibrary"
                     ></img>
                 </a>
