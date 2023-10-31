@@ -1,12 +1,26 @@
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
+import Tippy from '@tippyjs/react';
+import { PopperWrapper } from '~/components/Custom/Popper';
+
 const cx = classNames.bind(styles);
+
 function Header() {
+    const [hasClassA, setClassA] = useState(false);
+
+    const handleClick = () => {
+        // Kiểm tra xem đã có class A hay chưa, nếu chưa có thì thêm, ngược lại loại bỏ
+        setClassA(!hasClassA);
+        console.log(hasClassA);
+    };
+
     return (
         <header className={cx('header')}>
-            <div className={cx('header-logo')}>
+            {/* action here */}
+            <div className={cx('header-logo', hasClassA === true ? 'hidden' : '')}>
                 <a href="/" className={cx('logo-container')}>
                     <img
                         className={cx('logo-img')}
@@ -17,7 +31,8 @@ function Header() {
             </div>
             <div className={cx('header-inner')}>
                 <div className={cx('icon-close-open-sidebar')}>
-                    <div className={cx('icon-action')}>
+                    {/* handle click */}
+                    <div className={cx('icon-action')} onClick={handleClick}>
                         <span role="img" aria-label="menu-fold" color="#002456" className={cx('icon-close')}>
                             <svg
                                 viewBox="64 64 896 896"
@@ -51,20 +66,34 @@ function Header() {
                     <button className={cx('bell-btn')}>
                         <FontAwesomeIcon className={cx('shaking')} icon={faBell} />
                     </button>
-                    <div className={cx('user-wrap')}>
-                        <div className={cx('user-img')}>
-                            <img
-                                draggable="false"
-                                alt="avatar"
-                                src="http://monalms.monamedia.net/Upload/Images/d806637d-4ca3-486f-a349-64fc7ab8b395.jpg"
-                                className={cx('img')}
-                            ></img>
+                    <Tippy
+                        interactive
+                        trigger="click"
+                        arrow={true}
+                        animation="scale"
+                        content={
+                            <PopperWrapper>
+                                <h4>Thông tin</h4>
+                                <h4>Đổi mật khẩu</h4>
+                                <h4>Cút</h4>
+                            </PopperWrapper>
+                        }
+                    >
+                        <div className={cx('user-wrap')}>
+                            <div className={cx('user-img')}>
+                                <img
+                                    draggable="false"
+                                    alt="avatar"
+                                    src="http://monalms.monamedia.net/Upload/Images/d806637d-4ca3-486f-a349-64fc7ab8b395.jpg"
+                                    className={cx('img')}
+                                ></img>
+                            </div>
+                            <div className={cx('user-info')}>
+                                <p className={cx('user-name')}>Tên </p>
+                                <p className={cx('user-position')}>Chức vụ</p>
+                            </div>
                         </div>
-                        <div className={cx('user-info')}>
-                            <p className={cx('user-name')}>Tên </p>
-                            <p className={cx('user-position')}>Chức vụ</p>
-                        </div>
-                    </div>
+                    </Tippy>
                 </div>
             </div>
         </header>

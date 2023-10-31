@@ -11,7 +11,7 @@
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    //transition-duration: 0.15s;
+    transition-duration: 0.15s;
     transition-duration: 0.3s;
     box-shadow: 0 0 40px 0 rgba(82, 63, 105, 0.1);
     .header-logo {
@@ -44,6 +44,9 @@
             width: 100%;
         }
     }
+    .d-none {
+        display: none;
+    }
     .header-inner {
         display: flex;
         height: 100%;
@@ -54,9 +57,9 @@
         transition-property: all;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 0.3s;
-
         .icon-close-open-sidebar {
             font-size: 20px;
+            padding: 0px 23px;
             .icon-action .icon-open {
                 display: none;
             }
@@ -66,6 +69,7 @@
             display: flex;
             align-items: center;
             .bell-btn {
+                cursor: pointer;
                 position: relative;
                 font-size: 30px;
                 margin-right: 16px;
@@ -84,6 +88,8 @@
                 }
             }
             .user-wrap {
+                user-select: none;
+                cursor: pointer;
                 display: flex;
                 align-items: center;
                 margin-left: 16px;

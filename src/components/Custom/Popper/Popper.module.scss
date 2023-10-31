@@ -1,0 +1,23 @@
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 5px;
+    border-radius: 8px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    ::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+
+        border-bottom: 10px solid;
+        position: absolute;
+        top: -9px; /*số âm, nhỏ hơn margin wrapper 1 px cho nó khít */
+        left: 50%;
+        transform: translateX(-50%);
+        border-bottom-color: rgb(255, 255, 255);
+    }
+}
