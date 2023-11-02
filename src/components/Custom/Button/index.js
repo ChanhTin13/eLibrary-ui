@@ -7,10 +7,13 @@ const cx = classNames.bind(styles);
 function Button({
     to,
     href,
-    primary = false,
-    outline = false,
-    text = false,
-    rounded = false,
+    primary = false, //nút chính
+    outline = false, // nút outline
+    text = false, // nút khi hover thì underline text
+    rounded = false, // nút tròn
+    //
+
+    //
     disabled = false,
     small = false,
     large = false,
@@ -18,6 +21,7 @@ function Button({
     className,
     leftIcon,
     rightIcon,
+    iconColor, //icon color
     onClick,
     ...passProps
 }) {
@@ -49,17 +53,25 @@ function Button({
         primary,
         outline,
         text,
-        disabled,
         rounded,
+        disabled,
         small,
         large,
     });
 
     return (
-        <Comp className={classes} {...props}>
-            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+        <Comp className={classes} {...props} {...(props.href && { target: '_blank' })}>
+            {leftIcon && (
+                <span className={cx('icon')} style={{ color: iconColor }}>
+                    {leftIcon}
+                </span>
+            )}
             <span className={cx('title')}>{children}</span>
-            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
+            {rightIcon && (
+                <span className={cx('icon')} style={{ color: iconColor }}>
+                    {rightIcon}
+                </span>
+            )}
         </Comp>
     );
 }

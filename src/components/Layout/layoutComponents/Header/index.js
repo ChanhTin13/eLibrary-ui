@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
-import Tippy from '@tippyjs/react';
-import { PopperWrapper } from '~/components/Custom/Popper';
+import { faCircleQuestion, faEarthAsia, faKeyboard } from '@fortawesome/free-solid-svg-icons';
+import UserAction from '~/components/Custom/Popper/UserAction';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +16,24 @@ function Header() {
         setClassA(!hasClassA);
         console.log(hasClassA);
     };
-
+    const MENU_ITEMS = [
+        {
+            icon: <FontAwesomeIcon icon={faEarthAsia} />,
+            title: 'Thông tin',
+            iconColor: '#0088cc',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+            title: 'Đổi mật khẩu',
+            to: '/feedback',
+            iconColor: '#10ca93',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faKeyboard} />,
+            title: 'Đăng xuất',
+            iconColor: '#e04f5f',
+        },
+    ];
     return (
         <header className={cx('header')}>
             {/* action here */}
@@ -66,19 +83,8 @@ function Header() {
                     <button className={cx('bell-btn')}>
                         <FontAwesomeIcon className={cx('shaking')} icon={faBell} />
                     </button>
-                    <Tippy
-                        interactive
-                        trigger="click"
-                        arrow={true}
-                        animation="scale"
-                        content={
-                            <PopperWrapper>
-                                <h4>Thông tin</h4>
-                                <h4>Đổi mật khẩu</h4>
-                                <h4>Cút</h4>
-                            </PopperWrapper>
-                        }
-                    >
+
+                    <UserAction items={MENU_ITEMS}>
                         <div className={cx('user-wrap')}>
                             <div className={cx('user-img')}>
                                 <img
@@ -93,7 +99,7 @@ function Header() {
                                 <p className={cx('user-position')}>Chức vụ</p>
                             </div>
                         </div>
-                    </Tippy>
+                    </UserAction>
                 </div>
             </div>
         </header>
