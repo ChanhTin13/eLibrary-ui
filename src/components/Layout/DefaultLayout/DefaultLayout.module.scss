@@ -1,18 +1,18 @@
 .wrapper {
     background-color: rgb(188, 252, 129);
+    display: flex;
 }
 .right-content {
+    margin-top: var(--header-height);
     display: flex;
+    flex: 1;
     justify-content: flex-end;
     min-height: 100vh;
 }
 .main-content {
-    margin-top: var(--header-height);
-    width: calc(100% - var(--sidebar-icon-area-width) - var(--sidebar-action-area-width));
-    padding: 20px 10px;
+    //width: calc(100% - var(--sidebar-icon-area-width) - var(--sidebar-action-area-width));
+    padding: 20px 20px;
+    flex: 1;
+    width: 100%;
     background-color: #f8f7f7;
-}
-
-.closed-sidebar {
-    width: calc(100% - var(--sidebar-icon-area-width));
 }

@@ -5,6 +5,7 @@ export const CloseSidebarIcon = ({ width = '1em', height = '1em', className }) =
         height={height}
         viewBox="64 64 896 896"
         data-icon="menu-fold"
+        fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
@@ -21,6 +22,7 @@ export const OpenSidebarIcon = ({ width = '1em', height = '1em', className }) =>
         height={height}
         viewBox="64 64 896 896"
         data-icon="menu-fold"
+        fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
