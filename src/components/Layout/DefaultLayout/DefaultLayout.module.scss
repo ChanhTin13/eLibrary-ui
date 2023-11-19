@@ -1,13 +1,17 @@
 .wrapper {
-    background-color: rgb(188, 252, 129);
     display: flex;
 }
 .right-content {
-    margin-top: var(--header-height);
+    padding-top: var(--header-height);
+    padding-left: calc(var(--sidebar-icon-area-width) + var(--sidebar-action-area-width));
     display: flex;
     flex: 1;
     justify-content: flex-end;
     min-height: 100vh;
+    transition: padding 0.3s ease;
+}
+.content-max-width {
+    padding-left: var(--sidebar-icon-area-width);
 }
 .main-content {
     //width: calc(100% - var(--sidebar-icon-area-width) - var(--sidebar-action-area-width));
