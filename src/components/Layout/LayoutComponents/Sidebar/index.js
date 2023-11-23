@@ -5,6 +5,7 @@ import Image from '~/components/Images';
 import { SideBarContext } from '~/Context/SideBarContext';
 import { navigation } from '~/data/data';
 import MenuChild from './MenuChild';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -44,7 +45,7 @@ function Sidebar() {
             </div>
             <div className={cx('menu-child', toggle ? '' : 'hidden')}>
                 <div className={cx('header-logo')}>
-                    <a href="/" className={cx('logo-container')}>
+                    <a href={config.routes.home} className={cx('logo-container')}>
                         <Image
                             className={cx('logo-img')}
                             src="https://wallpaperaccess.com/full/296819.jpg"
