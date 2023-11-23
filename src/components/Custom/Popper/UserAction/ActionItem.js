@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import Button from '~/components/Custom/Button';
 import styles from './Action.module.scss';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -11,5 +12,8 @@ function ActionItem({ data }) {
         </Button>
     );
 }
+ActionItem.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default ActionItem;

@@ -1,5 +1,6 @@
 import { faAslInterpreting, faHSquare, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleQuestion, faEarthAsia, faKeyboard, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export const navigation = [
     {
@@ -47,5 +48,28 @@ export const MENU_CHILD = [
                 action: '/',
             },
         ],
+    },
+];
+export const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: 'Tiếng Việt',
+        iconColor: '#000',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faUser} />,
+        title: 'Thông tin',
+        iconColor: '#0088cc',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: 'Đổi mật khẩu',
+        to: '/feedback',
+        iconColor: '#10ca93',
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: 'Đăng xuất',
+        iconColor: '#e04f5f',
     },
 ];

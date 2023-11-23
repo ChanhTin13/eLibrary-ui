@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './MenuChild.module.scss';
 import { MENU_CHILD } from '~/data/data';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 function MenuChild({ code }) {
@@ -26,5 +27,8 @@ function MenuChild({ code }) {
         </div>
     );
 }
+MenuChild.propTypes = {
+    code: PropTypes.string.isRequired,
+};
 
 export default MenuChild;

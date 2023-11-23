@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import Image from '~/components/Images';
-import { SideBarContext } from '~/Context/SideBarContext';
+import { SideBarContext } from '~/contexts/SideBarContext';
 import { navigation } from '~/data/data';
 import MenuChild from './MenuChild';
 import config from '~/config';
@@ -21,7 +21,6 @@ function Sidebar() {
 
     return (
         <aside className={cx('sidebar')}>
-            {console.log('b' + toggle)}
             <div className={cx('menu-parent')}>
                 <div className={cx('menu-parent-logo')}></div>
                 <div className={cx('menu-parent-body')}>

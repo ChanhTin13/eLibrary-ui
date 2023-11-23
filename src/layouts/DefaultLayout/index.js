@@ -1,9 +1,10 @@
-import Sidebar from '~/components/Layout/LayoutComponents/Sidebar';
-import Header from '~/components/Layout/LayoutComponents/Header';
+import Sidebar from '~/layouts/components/Sidebar';
+import Header from '~/layouts/components/Header';
 import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';
 import { useContext } from 'react';
-import { SideBarContext } from '~/Context/SideBarContext';
+import { SideBarContext } from '~/contexts/SideBarContext';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
@@ -18,5 +19,8 @@ function DefaultLayout({ children }) {
         </div>
     );
 }
+DefaultLayout.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default DefaultLayout;

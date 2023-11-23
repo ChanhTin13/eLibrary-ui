@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const { createContext, useState } = require('react');
 
 const SideBarContext = createContext();
@@ -14,5 +15,7 @@ function SideBarProvider({ children }) {
     };
     return <SideBarContext.Provider value={value}>{children}</SideBarContext.Provider>;
 }
-
+SideBarProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 export { SideBarContext, SideBarProvider };
