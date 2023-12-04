@@ -26,8 +26,8 @@ export const MENU_CHILD = [
         name: 'Quản lý hệ thống',
         child: [
             {
-                name: 'Tin tức ',
-                action: 'https://www.w3schools.com/css/css3_transitions.asp',
+                name: 'Thống kê',
+                action: '/statistic',
             },
             {
                 name: 'Truyền thông',
@@ -40,7 +40,7 @@ export const MENU_CHILD = [
         name: 'Cài đặt',
         child: [
             {
-                name: 'Tin tức',
+                name: 'Cấu hình',
                 action: '/',
             },
             {

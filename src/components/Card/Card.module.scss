@@ -1,0 +1,26 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    margin: 10px 0px;
+    border-radius: 15px;
+    font-weight: 500;
+    background: #ffffff;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.175) !important;
+}
+.content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.icon {
+    font-size: 22px;
+    padding: 7px 14px;
+    border-radius: 15px;
+    color: #ffffff;
+}
+.text-area {
+    padding-left: 10px;
+}

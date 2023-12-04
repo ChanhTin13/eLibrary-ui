@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames/bind';
-import styles from './Header.module.scss';
-import { SideBarContext } from '~/contexts/SideBarContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
+
 import { CloseSidebarIcon, OpenSidebarIcon } from '~/components/Icons';
+import { SideBarContext } from '~/contexts/SideBarContext';
+import styles from './Header.module.scss';
 import UserAction from '~/components/Custom/Popper/UserAction';
 import Image from '~/components/Images';
 import { MENU_ITEMS } from '~/data/data';

@@ -4,7 +4,7 @@ const { createContext, useState } = require('react');
 const SideBarContext = createContext();
 
 function SideBarProvider({ children }) {
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
 
     const handleSideBar = () => {
         setToggle(!toggle);

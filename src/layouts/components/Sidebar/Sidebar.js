@@ -11,12 +11,10 @@ const cx = classNames.bind(styles);
 
 function Sidebar() {
     const { toggle } = useContext(SideBarContext);
-    const [active, setActive] = useState(0);
-    const [code, setCode] = useState('home');
+    const [isOpen, setIsOpen] = useState({ activeNum: 0, code: 'home' });
 
-    const handleActionClick = (num, code) => {
-        setActive(num);
-        setCode(code);
+    const handleActionClick = (activeNum, code) => {
+        setIsOpen({ activeNum, code });
     };
 
     return (
@@ -30,7 +28,7 @@ function Sidebar() {
                                 nav.icon && (
                                     <li
                                         key={index}
-                                        className={cx('li-icon', active === index ? 'li-active' : null)}
+                                        className={cx('li-icon', isOpen.activeNum === index ? 'li-active' : null)}
                                         onClick={() => handleActionClick(index, nav.code)}
                                     >
                                         <b className={cx('b-false')}></b>
@@ -53,7 +51,7 @@ function Sidebar() {
                     </a>
                 </div>
 
-                <MenuChild code={code} />
+                <MenuChild code={isOpen.code} />
             </div>
         </aside>
     );
