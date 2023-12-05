@@ -2,10 +2,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
+import { useState } from 'react';
+import PopUp from '~/components/PopUp';
 
 const cx = classNames.bind(styles);
-
 function Button({
+    popupContent, //PopUp
     to,
     href,
     primary = false, //nút chính
@@ -30,6 +32,18 @@ function Button({
         ...passProps,
     };
 
+    // handle PopUp
+    const [isPopupOpen, setPopupOpen] = useState(false);
+
+    const handleButtonClick = () => {
+        setPopupOpen(!isPopupOpen);
+    };
+
+    const handleClosePopup = () => {
+        setPopupOpen(false);
+    };
+    //
+
     // Remove event listener when btn is disabled
     if (disabled) {
         Object.keys(props).forEach((key) => {
@@ -38,15 +52,19 @@ function Button({
             }
         });
     }
-
-    if (to) {
-        props.to = to;
-        Comp = Link;
-    } else if (href) {
-        props.href = href;
-        Comp = 'a';
+    // if there is PopUp, remove all href
+    if (popupContent) {
+        Comp = 'div';
+        props.onClick = handleButtonClick;
+    } else {
+        if (to) {
+            props.to = to;
+            Comp = Link;
+        } else if (href) {
+            props.href = href;
+            Comp = 'a';
+        }
     }
-
     const classes = cx('wrapper', {
         [className]: className,
         primary,
@@ -71,11 +89,13 @@ function Button({
                     {rightIcon}
                 </span>
             )}
+            {popupContent && isPopupOpen && <PopUp children={popupContent} onClose={handleClosePopup} />}
         </Comp>
     );
 }
 
 Button.propTypes = {
+    popupContent: PropTypes.node, // PopUp
     to: PropTypes.string,
     href: PropTypes.string,
     primary: PropTypes.bool,
