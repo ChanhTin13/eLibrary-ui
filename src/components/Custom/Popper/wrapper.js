@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function PopperWrapper({ children, className }) {
-    return <div className={cx('wrapper', className)}>{children}</div>;
+function PopperWrapper({ children, className, arrow }) {
+    const wrapperClassName = cx('wrapper', className, !!arrow && 'arrow', arrow);
+    return <div className={wrapperClassName}>{children}</div>;
 }
 PopperWrapper.propTypes = {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
+    arrow: PropTypes.string,
 };
 
 export default PopperWrapper;

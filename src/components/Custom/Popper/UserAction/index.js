@@ -12,7 +12,9 @@ function UserAction({ children, items = [], hideOnClick = true }) {
     };
     const renderResult = (attrs) => (
         <div className={cx('menu-list')} {...attrs}>
-            <PopperWrapper className={cx('menu-popper')}>{renderItems()}</PopperWrapper>
+            <PopperWrapper className={cx('menu-popper')} arrow="top">
+                {renderItems()}
+            </PopperWrapper>
         </div>
     );
 
