@@ -9,6 +9,7 @@ import styles from './Header.module.scss';
 import UserAction from '~/components/Custom/Popper/UserAction';
 import Image from '~/components/Images';
 import { MENU_ITEMS } from '~/data/data';
+import images from '~/asset/images';
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -16,32 +17,31 @@ function Header() {
 
     return (
         <header className={cx('header')}>
-            <div className={cx('header-inner', context.toggle ? '' : 'inner-max-width')}>
+            <div className={cx('header-inner', context.isOpen ? '' : 'inner-max-width')}>
                 <div className={cx('icon-close-open-sidebar')}>
                     {/* handle click */}
                     <div className={cx('icon-action')} onClick={context.handleSideBar}>
-                        <span>{context.toggle ? <CloseSidebarIcon /> : <OpenSidebarIcon />}</span>
+                        <span>{context.isOpen ? <CloseSidebarIcon /> : <OpenSidebarIcon />}</span>
                     </div>
                 </div>
 
                 <div className={cx('header-inner-item')}>
-                    <button className={cx('bell-btn')}>
+                    <button className={cx('bell-btn')} aria-label="notification">
                         <FontAwesomeIcon className={cx('shaking')} icon={faBell} />
                     </button>
 
                     <UserAction items={MENU_ITEMS}>
-                        <div className={cx('user-wrap')}>
+                        <div className={cx('user-wrap')} role="button" aria-expanded="true">
                             <div className={cx('user-img')}>
-                                <Image
-                                    draggable="false"
-                                    alt="avatar"
-                                    src="http://monalms.monamedia.net/Upload/Images/d806637d-4ca3-486f-a349-64fc7ab8b395.jpg"
-                                    className={cx('img')}
-                                />
+                                <Image draggable="false" alt="avatar" src={images.userAvata} className={cx('img')} />
                             </div>
                             <div className={cx('user-info')}>
-                                <p className={cx('user-name')}>Tên </p>
-                                <p className={cx('user-position')}>Chức vụ</p>
+                                <p className={cx('user-name')} role="paragraph">
+                                    Tên{' '}
+                                </p>
+                                <p className={cx('user-position')} role="paragraph">
+                                    Chức vụ
+                                </p>
                             </div>
                         </div>
                     </UserAction>

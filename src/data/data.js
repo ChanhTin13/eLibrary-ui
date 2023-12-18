@@ -9,12 +9,12 @@ export const navigation = [
         action: null,
     },
     {
-        code: 'setting',
+        code: 'book',
         icon: <FontAwesomeIcon icon={faHSquare} />,
         action: null,
     },
     {
-        code: 'student',
+        code: 'setting',
         icon: <FontAwesomeIcon icon={faHouse} />,
         action: null,
     },
@@ -31,6 +31,20 @@ export const MENU_CHILD = [
             },
             {
                 name: 'Truyền thông',
+                action: '/',
+            },
+        ],
+    },
+    {
+        code: 'book',
+        name: 'Sách',
+        child: [
+            {
+                name: 'Mượn trả sách',
+                action: '/',
+            },
+            {
+                name: 'Sách',
                 action: '/',
             },
         ],

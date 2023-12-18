@@ -4,13 +4,13 @@ const { createContext, useState } = require('react');
 const SideBarContext = createContext();
 
 function SideBarProvider({ children }) {
-    const [toggle, setToggle] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSideBar = () => {
-        setToggle(!toggle);
+        setIsOpen(!isOpen);
     };
     const value = {
-        toggle,
+        isOpen: isOpen,
         handleSideBar,
     };
     return <SideBarContext.Provider value={value}>{children}</SideBarContext.Provider>;

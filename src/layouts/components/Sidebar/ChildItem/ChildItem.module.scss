@@ -1,0 +1,36 @@
+.element-title {
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 20px;
+    text-align: left;
+    background: #fff;
+    outline: none;
+    font-weight: bold;
+    // không cho copy
+    // user-select: none;
+    // -webkit-user-select: none; /* Cho các trình duyệt Webkit (Safari, Chrome) */
+    // -moz-user-select: none; /* Cho Firefox */
+    // -ms-user-select: none; /* Cho Microsoft Edge */
+}
+.group-list {
+    width: 100%;
+    padding: 10px 0px;
+    margin: 0 !important;
+}
+.group-child {
+    padding: 13px 0px;
+    padding-left: 6px;
+    line-height: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    align-items: center;
+    color: black;
+    &:active {
+        background-color: #e5e5e5 !important;
+    }
+    &:hover,
+    &:visited {
+        background-color: #e5e5e5 !important;
+        color: var(--primary-color);
+    }
+}

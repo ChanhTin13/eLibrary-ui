@@ -5,14 +5,11 @@
     position: fixed;
     top: 0;
     left: 0;
+    display: flex;
     height: 100%;
     //width: var(--sidebar-icon-area-width);
-    //
     z-index: 101;
-    display: flex;
-    overflow: hidden;
     transition: width 0.2s;
-    //
     color: #fff;
 }
 .menu-parent {
@@ -25,7 +22,7 @@
     height: var(--header-height);
     align-items: center;
     justify-content: center;
-    background-color: #23769f;
+    background-color: #002456;
 }
 .menu-parent-body {
     padding-top: 15px;
@@ -42,6 +39,7 @@
 .li-active {
     background-color: #fff !important;
     transition: 0.1s;
+    position: relative;
     .icon-btn {
         color: black !important;
     }
@@ -89,7 +87,6 @@
     }
 }
 .li-icon {
-    position: relative;
     height: 54px;
     margin-top: 10px;
     display: flex;
@@ -105,12 +102,17 @@
 }
 // menu-child
 .menu-child {
-    transition: all 0.25s ease;
-    box-shadow: 10px 9px 15px var(--menu-child-shadow-color);
-    z-index: 109;
     width: 240px;
+    transition: width 0.3s;
+    box-shadow: 10px 9px 15px var(--menu-child-shadow-color);
     background-color: var(--menu-child-bg-color);
+    z-index: 109;
 }
+.hidden {
+    width: 0px;
+    box-shadow: none;
+}
+
 //header-logo
 .header-logo {
     display: flex;
@@ -134,8 +136,10 @@
         }
     }
 }
-// custom
-
-.hidden {
-    display: none;
+// pop up
+.menu-hover {
+    width: 217px !important;
+    height: auto;
+    margin: -10px;
+    box-shadow: 0px 9px 15px var(--menu-child-shadow-color) !important;
 }

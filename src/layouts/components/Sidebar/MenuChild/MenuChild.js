@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 import styles from './MenuChild.module.scss';
 import { MENU_CHILD } from '~/data/data';
-import PropTypes from 'prop-types';
+import ChildItem from '../ChildItem';
 
 const cx = classNames.bind(styles);
 function MenuChild({ code }) {
@@ -10,18 +11,7 @@ function MenuChild({ code }) {
         <div className={cx('menu-child-body')}>
             <div className={cx('menu-child-body-element')}>
                 {items.map((item, index) => (
-                    <div key={index}>
-                        <div className={cx('element-title')}>{item.name}</div>
-                        <ul className={cx('group-list')}>
-                            {item.child.map((child, index) => (
-                                <li key={index} className={cx('group-child')}>
-                                    <a href={child.action}>
-                                        <div>{child.name}</div>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <ChildItem item={item} key={index} />
                 ))}
             </div>
         </div>
