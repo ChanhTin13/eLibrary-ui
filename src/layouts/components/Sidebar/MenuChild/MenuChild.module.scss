@@ -7,6 +7,7 @@
     padding: 16px 0px;
     white-space: nowrap; /* Ngăn chữ xuống dòng */
     overflow: hidden; /* Ngăn chữ vượt ra khỏi phần tử cha nếu nó quá dài */
+    user-select: none;
 }
 .menu-child-body-element {
     padding: 0px 8px;

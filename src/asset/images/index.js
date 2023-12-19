@@ -1,6 +1,7 @@
 const images = {
     //logo: require('~/asset/images/logo.svg').default,
-    userAvata: require('~/asset/images/userAvata.jpg'),
+    logoWallPaper: require('~/asset/images/logoWallPaper.webp'),
+    userAvata: require('~/asset/images/userAvata.webp'),
     defaultUser: require('~/asset/images/defaultUser.png'),
 };
 

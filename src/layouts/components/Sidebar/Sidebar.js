@@ -3,10 +3,11 @@ import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import styles from './Sidebar.module.scss';
 import Image from '~/components/Images';
-import { SideBarContext } from '~/contexts/SideBarContext';
-import { navigation } from '~/data/data';
 import MenuChild from './MenuChild';
 import config from '~/config';
+import images from '~/asset/images';
+import { navigation } from '~/data/data';
+import { SideBarContext } from '~/contexts/SideBarContext';
 import { PopperWrapper } from '~/components/Custom/Popper';
 
 const cx = classNames.bind(styles);
@@ -43,6 +44,7 @@ function Sidebar() {
                                     <Tippy
                                         interactive
                                         placement="right"
+                                        hideOnClick={false}
                                         render={(attrs) => renderResult(attrs, nav.code)}
                                         delay={[0, 50]}
                                     >
@@ -62,16 +64,19 @@ function Sidebar() {
                                     </Tippy>
                                 </li>
                             ) : (
-                                <li
-                                    key={index}
-                                    className={cx('li-icon', menu.activeNum === index ? 'li-active' : null)}
-                                    onClick={() => handleActionClick(index, nav.code)}
-                                >
-                                    <b className={cx('b-false')}></b>
-                                    <b></b>
-                                    <button className={cx('icon-btn')} aria-label={nav.code}>
-                                        <div aria-hidden="true">{nav.icon}</div>
-                                    </button>
+                                <li key={index}>
+                                    <div
+                                        className={cx('li-icon', menu.activeNum === index ? 'li-active' : null)}
+                                        onClick={() => handleActionClick(index, nav.code)}
+                                        role="button"
+                                        aria-label={nav.code}
+                                    >
+                                        <b className={cx('b-false')}></b>
+                                        <b></b>
+                                        <button className={cx('icon-btn')} aria-label={nav.code}>
+                                            <div aria-hidden="true">{nav.icon}</div>
+                                        </button>
+                                    </div>
                                 </li>
                             ),
                         )}
@@ -86,8 +91,9 @@ function Sidebar() {
                             <a href={config.routes.home} className={cx('logo-container')}>
                                 <Image
                                     className={cx('logo-img')}
-                                    src="https://wallpaperaccess.com/full/296819.jpg"
+                                    src={images.logoWallPaper}
                                     alt="eLibrary"
+                                    loading="lazy"
                                 />
                             </a>
                         </div>
