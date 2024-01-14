@@ -1,20 +1,38 @@
-import PropTypes from 'prop-types';
+import React, { useState, ReactNode, MouseEvent } from 'react';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
-import { useState } from 'react';
 import PopUp from '~/components/PopUp';
 
 const cx = classNames.bind(styles);
-function Button({
-    popupContent, //PopUp
+
+interface ButtonProps {
+    popupContent?: ReactNode; // PopUp
+    to?: string;
+    href?: string;
+    primary?: boolean;
+    outline?: boolean;
+    text?: boolean;
+    rounded?: boolean;
+    disabled?: boolean;
+    small?: boolean;
+    large?: boolean;
+    children: ReactNode;
+    className?: string;
+    leftIcon?: ReactNode;
+    rightIcon?: ReactNode;
+    iconColor?: string;
+    onClick?: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
+}
+
+const Button: React.FC<ButtonProps> = ({
+    popupContent,
     to,
     href,
-    primary = false, //nút chính
-    outline = false, // nút outline
-    text = false, // nút khi hover thì underline text
-    rounded = false, // nút tròn
-    //
+    primary = false,
+    outline = false,
+    text = false,
+    rounded = false,
     disabled = false,
     small = false,
     large = false,
@@ -22,12 +40,14 @@ function Button({
     className,
     leftIcon,
     rightIcon,
-    iconColor, //icon color
+    iconColor,
     onClick,
     ...passProps
-}) {
-    let Comp = 'button';
+}) => {
+    let Comp: React.ElementType = 'button';
     const props = {
+        to,
+        href,
         onClick,
         ...passProps,
     };
@@ -42,13 +62,16 @@ function Button({
     const handleClosePopup = () => {
         setPopupOpen(false);
     };
-    //
-
+    // Define a type guard for the 'on' properties
+    function isFunctionProperty(key: string, value: any): value is Function {
+        return key.startsWith('on') && typeof value === 'function';
+    }
     // Remove event listener when btn is disabled
     if (disabled) {
-        Object.keys(props).forEach((key) => {
-            if (key.startsWith('on') && typeof props[key] === 'function') {
-                delete props[key];
+        Object.entries(props).forEach(([key, value]) => {
+            if (isFunctionProperty(key, value)) {
+                // Use type assertion here
+                delete (props as { [key: string]: any })[key];
             }
         });
     }
@@ -66,7 +89,7 @@ function Button({
         }
     }
     const classes = cx('wrapper', {
-        [className]: className,
+        [className!]: className,
         primary,
         outline,
         text,
@@ -77,7 +100,7 @@ function Button({
     });
 
     return (
-        <Comp className={classes} {...props} {...(props.href && { target: '_blank' })}>
+        <Comp className={classes} {...props} {...(Comp === 'a' && { href, target: '_blank' })}>
             {leftIcon && (
                 <span className={cx('icon')} style={{ color: iconColor }}>
                     {leftIcon}
@@ -92,27 +115,6 @@ function Button({
             {popupContent && isPopupOpen && <PopUp children={popupContent} onClose={handleClosePopup} />}
         </Comp>
     );
-}
-
-Button.propTypes = {
-    popupContent: PropTypes.node, // PopUp
-    to: PropTypes.string,
-    href: PropTypes.string,
-    primary: PropTypes.bool,
-    outline: PropTypes.bool,
-    text: PropTypes.bool,
-    rounded: PropTypes.bool,
-    //
-    disabled: PropTypes.bool,
-    small: PropTypes.bool,
-    large: PropTypes.bool,
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    leftIcon: PropTypes.node,
-    rightIcon: PropTypes.node,
-    iconColor: PropTypes.string,
-    //
-    onClick: PropTypes.func,
 };
 
 export default Button;

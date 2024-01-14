@@ -13,15 +13,19 @@ import images from '~/asset/images';
 
 const cx = classNames.bind(styles);
 function Header() {
-    const context = useContext(SideBarContext);
-
+    const sideBarContext = useContext(SideBarContext);
+    if (!sideBarContext) {
+        // Handle the case when the context is not yet available
+        return null;
+    }
+    const { isOpen, handleSideBar } = sideBarContext;
     return (
         <header className={cx('header')}>
-            <div className={cx('header-inner', context.isOpen ? '' : 'inner-max-width')}>
+            <div className={cx('header-inner', isOpen ? '' : 'inner-max-width')}>
                 <div className={cx('icon-close-open-sidebar')}>
                     {/* handle click */}
-                    <div className={cx('icon-action')} onClick={context.handleSideBar}>
-                        <span>{context.isOpen ? <CloseSidebarIcon /> : <OpenSidebarIcon />}</span>
+                    <div className={cx('icon-action')} onClick={handleSideBar}>
+                        <span>{isOpen ? <CloseSidebarIcon /> : <OpenSidebarIcon />}</span>
                     </div>
                 </div>
 

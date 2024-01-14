@@ -1,6 +1,12 @@
-import * as httpRequest from '~/utils/httpRequest';
+import httpRequest from '../utils/httpRequest';
 
-export const get = async (pageSize, pageIndex, search) => {
+interface GetParams {
+    pageSize: number;
+    pageIndex: number;
+    search: string;
+}
+
+export const get = async ({ pageSize, pageIndex, search }: GetParams) => {
     try {
         const res = await httpRequest.get('api/book/GetById', {
             params: {
@@ -19,7 +25,8 @@ export const get = async (pageSize, pageIndex, search) => {
         throw error;
     }
 };
-export const getById = async (id) => {
+
+export const getById = async (id: string) => {
     try {
         const res = await httpRequest.get('api/book/GetById', {
             params: {
@@ -36,11 +43,10 @@ export const getById = async (id) => {
         throw error;
     }
 };
-//  thêm
-export const addBook = async (bookData) => {
+
+export const addBook = async (bookData: any) => {
     try {
         const res = await httpRequest.post('api/book/Add', bookData);
-        // Kiểm tra trạng thái HTTP
         if (res.status === 200) {
             return {
                 status: res.status,
@@ -57,15 +63,13 @@ export const addBook = async (bookData) => {
         }
     } catch (error) {
         console.error('Error adding book: ', error);
-        throw error; // Re-throw the error to handle it at a higher level if needed
+        throw error;
     }
 };
 
-// Hàm sửa thông tin sách
-export const updateBook = async (updatedData) => {
+export const updateBook = async (id: string, updatedData: any) => {
     try {
         const res = await httpRequest.put(`api/book/Update/${id}`, updatedData);
-        // Kiểm tra trạng thái HTTP
         if (res.status === 200) {
             console.log('Book updated successfully.');
             return {
@@ -87,11 +91,9 @@ export const updateBook = async (updatedData) => {
     }
 };
 
-// Hàm xóa sách
-export const deleteBook = async (id) => {
+export const deleteBook = async (id: string) => {
     try {
         const res = await httpRequest.delete(`api/book/Delete/${id}`);
-        // Kiểm tra trạng thái HTTP
         if (res.status === 200) {
             return {
                 status: res.status,

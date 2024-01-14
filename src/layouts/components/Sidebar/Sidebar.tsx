@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import styles from './Sidebar.module.scss';
@@ -13,20 +13,25 @@ import { PopperWrapper } from '~/components/Custom/Popper';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    const { isOpen } = useContext(SideBarContext);
-    const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [menu, setMenu] = useState({ activeNum: 0, code: 'home' });
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [menu, setMenu] = useState<{ activeNum: number; code: string }>({ activeNum: 0, code: 'home' });
+    const sideBarContext = useContext(SideBarContext);
+    if (!sideBarContext) {
+        // Handle the case when the context is not yet available
+        return null;
+    }
+    const { isOpen } = sideBarContext;
 
-    const handleIconHover = (index) => {
+    const handleIconHover = (index: number) => {
         setHoveredIndex(index);
     };
     const handleIconLeave = () => {
         setHoveredIndex(null);
     };
-    const handleActionClick = (activeNum, code) => {
+    const handleActionClick = (activeNum: number, code: string) => {
         setMenu({ activeNum, code });
     };
-    const renderResult = (attrs, code) => (
+    const renderResult = (attrs: Record<string, any>, code: string) => (
         <PopperWrapper className={cx('menu-hover')} {...attrs}>
             <MenuChild code={code} />
         </PopperWrapper>
@@ -93,7 +98,7 @@ function Sidebar() {
                                     className={cx('logo-img')}
                                     src={images.logoWallPaper}
                                     alt="eLibrary"
-                                    loading="lazy"
+                                    //loading="lazy"
                                 />
                             </a>
                         </div>

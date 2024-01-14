@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import { PopperWrapper } from '~/components/Custom/Popper';
@@ -6,11 +6,24 @@ import ActionItem from './ActionItem';
 import styles from './Action.module.scss';
 
 const cx = classNames.bind(styles);
-function UserAction({ children, items = [], hideOnClick = true }) {
+interface MenuItem {
+    icon: React.ReactNode;
+    to?: string; // Make 'to' property optional
+    iconColor: string;
+    title: string;
+}
+interface UserActionProps {
+    children: ReactNode;
+    items?: MenuItem[];
+    hideOnClick?: boolean;
+}
+
+const UserAction: React.FC<UserActionProps> = ({ children, items = [], hideOnClick = true }) => {
     const renderItems = () => {
         return items.map((item, index) => <ActionItem key={index} data={item} />);
     };
-    const renderResult = (attrs) => (
+
+    const renderResult = (attrs: Record<string, any>) => (
         <div className={cx('menu-list')} {...attrs}>
             <PopperWrapper className={cx('menu-popper')} arrow="top">
                 {renderItems()}
@@ -20,14 +33,9 @@ function UserAction({ children, items = [], hideOnClick = true }) {
 
     return (
         <Tippy interactive trigger="click" hideOnClick={hideOnClick} render={renderResult}>
-            {children}
+            {children as React.ReactElement}
         </Tippy>
     );
-}
-UserAction.propTypes = {
-    children: PropTypes.node.isRequired,
-    items: PropTypes.array,
-    hideOnClick: PropTypes.bool,
 };
 
 export default UserAction;

@@ -1,10 +1,12 @@
+import React, { Fragment, ComponentType } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { publicRoutes } from '~/routes';
 import DefaultLayout from '~/layouts';
+import { DefaultLayoutProps } from './layouts/DefaultLayout/DefaultLayout';
+
 function App() {
     return (
         <Router>
@@ -12,10 +14,10 @@ function App() {
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
-                        let Layout = DefaultLayout;
+                        let Layout: ComponentType<DefaultLayoutProps> = DefaultLayout;
 
                         if (route.layout) {
-                            Layout = route.layout;
+                            Layout = route.layout as ComponentType<DefaultLayoutProps>;
                         } else if (route.layout === null) {
                             Layout = Fragment;
                         }

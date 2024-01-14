@@ -5,16 +5,20 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
 import { SideBarProvider } from './contexts/SideBarContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <React.StrictMode>
-        <SideBarProvider>
-            <GlobalStyles>
-                <App />
-            </GlobalStyles>
-        </SideBarProvider>
-    </React.StrictMode>,
-);
+const rootElement = document.getElementById('root');
+
+if (rootElement) {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(
+        <React.StrictMode>
+            <SideBarProvider>
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
+            </SideBarProvider>
+        </React.StrictMode>,
+    );
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

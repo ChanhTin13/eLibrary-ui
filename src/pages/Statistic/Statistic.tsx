@@ -1,9 +1,11 @@
-import classNames from 'classnames/bind';
-import grids from '~/grid/Grid.module.scss';
-import styles from './Statistic.module.scss';
+import * as React from 'react';
 import Card from '~/components/Card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import classNames from 'classnames/bind';
+
+import grids from '~/grid/Grid.module.scss';
+import styles from './Statistic.module.scss';
 
 const grid = classNames.bind(grids);
 const cx = classNames.bind(styles);

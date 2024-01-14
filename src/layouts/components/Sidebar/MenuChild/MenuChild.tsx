@@ -1,12 +1,18 @@
+import React from 'react';
 import classNames from 'classnames/bind';
-import PropTypes from 'prop-types';
 import styles from './MenuChild.module.scss';
 import { MENU_CHILD } from '~/data/data';
 import ChildItem from '../ChildItem';
 
 const cx = classNames.bind(styles);
-function MenuChild({ code }) {
+
+interface MenuChildProps {
+    code: string;
+}
+
+const MenuChild: React.FC<MenuChildProps> = ({ code }) => {
     const items = MENU_CHILD.filter((item) => item.code === code);
+
     return (
         <div className={cx('menu-child-body')}>
             <div className={cx('menu-child-body-element')}>
@@ -16,9 +22,6 @@ function MenuChild({ code }) {
             </div>
         </div>
     );
-}
-MenuChild.propTypes = {
-    code: PropTypes.string.isRequired,
 };
 
 export default MenuChild;

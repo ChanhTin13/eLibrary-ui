@@ -1,19 +1,25 @@
-// Login.js
+import * as React from 'react';
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 import authService from '~/services/authService';
-import styles from './Login.module.scss'; // Import your CSS file
+import styles from './Login.module.scss';
 import useLoginForm from './useLoginForm';
 
 const cx = classNames.bind(styles);
+
+interface LoginFormValues {
+    username: string;
+    password: string;
+}
+
 const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const { formik } = useLoginForm(async (values) => {
+    const { formik } = useLoginForm(async (values: LoginFormValues) => {
         setLoading(true);
         try {
             await authService.login(values.username, values.password);

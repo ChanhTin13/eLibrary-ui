@@ -1,6 +1,6 @@
 import httpRequest from '~/utils/httpRequest';
 
-const login = async (username, password) => {
+const login = async (username: string, password: string) => {
     try {
         const formData = new FormData();
         formData.append('username', username);
@@ -44,12 +44,13 @@ const logout = async () => {
         throw error;
     }
 };
+
 const refreshToken = async () => {
     try {
-        //lấy ra refreshToken
+        // lấy ra refreshToken
         const storageData = localStorage.getItem('StorageData');
-        const accessTokenObject = JSON.parse(storageData);
-        const refreshToken = accessTokenObject.theRefresh.refreshToken;
+        const accessTokenObject = JSON.parse(storageData ?? ''); // Use '' as a default value if storageData is null
+        const refreshToken = accessTokenObject?.theRefresh?.refreshToken;
         const param = { RefreshToken: refreshToken };
 
         return await httpRequest.post('/api/RefreshToken', param).then((response) => {
@@ -76,6 +77,7 @@ const refreshToken = async () => {
         throw error;
     }
 };
+
 const authService = {
     login,
     logout,

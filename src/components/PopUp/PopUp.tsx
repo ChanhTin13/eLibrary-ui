@@ -1,19 +1,24 @@
-import React, { useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useEffect, ReactNode } from 'react';
 import classNames from 'classnames/bind';
 import styles from './PopUp.module.scss';
 import grids from '~/grid/Grid.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const grid = classNames.bind(grids);
 const cx = classNames.bind(styles);
-function PopUp({ children, onClose }) {
-    const popupRef = useRef(null);
+
+interface PopUpProps {
+    children: ReactNode;
+    onClose: () => void;
+}
+
+function PopUp({ children, onClose }: PopUpProps) {
+    const popupRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (popupRef.current && !popupRef.current.contains(event.target)) {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
                 onClose();
             }
         };
@@ -33,7 +38,7 @@ function PopUp({ children, onClose }) {
                         <div className={cx('content')}>
                             <button className={cx('close-button')} onClick={onClose}>
                                 <span className={cx('close-icon')}>
-                                    <FontAwesomeIcon icon={faX} />
+                                    <FontAwesomeIcon icon={faTimes} />
                                 </span>
                             </button>
                             <div className={cx('children-container')}>{children}</div>
@@ -44,8 +49,5 @@ function PopUp({ children, onClose }) {
         </div>
     );
 }
-PopUp.propTypes = {
-    children: PropTypes.string.isRequired,
-    onClose: PropTypes.func.isRequired,
-};
+
 export default PopUp;

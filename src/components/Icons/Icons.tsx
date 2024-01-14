@@ -1,4 +1,11 @@
-export const CloseSidebarIcon = ({ width = '1em', height = '1em', className }) => (
+import React from 'react';
+
+interface IconProps {
+    width?: string;
+    height?: string;
+    className?: string;
+}
+export const CloseSidebarIcon: React.FC<IconProps> = ({ width = '1em', height = '1em', className }) => (
     <svg
         className={className}
         width={width}
@@ -15,7 +22,7 @@ export const CloseSidebarIcon = ({ width = '1em', height = '1em', className }) =
         ></path>
     </svg>
 );
-export const OpenSidebarIcon = ({ width = '1em', height = '1em', className }) => (
+export const OpenSidebarIcon: React.FC<IconProps> = ({ width = '1em', height = '1em', className }) => (
     <svg
         className={className}
         width={width}

@@ -1,9 +1,20 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './ChildItem.module.scss';
 
 const cx = classNames.bind(styles);
-function ChildItem({ item }) {
+
+interface ChildItemProps {
+    item: {
+        name: string;
+        child: {
+            name: string;
+            action: string;
+        }[];
+    };
+}
+
+const ChildItem: React.FC<ChildItemProps> = ({ item }) => {
     return (
         <div>
             <div className={cx('element-title')}>{item.name}</div>
@@ -18,9 +29,6 @@ function ChildItem({ item }) {
             </ul>
         </div>
     );
-}
-ChildItem.propTypes = {
-    item: PropTypes.object.isRequired,
 };
 
 export default ChildItem;

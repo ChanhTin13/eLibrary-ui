@@ -1,8 +1,11 @@
-// useLoginForm.js
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-const useLoginForm = (submitFunction) => {
+interface SubmitFunction {
+    (values: { username: string; password: string }): Promise<void>;
+}
+
+const useLoginForm = (submitFunction: SubmitFunction) => {
     const formik = useFormik({
         initialValues: {
             username: '',
